@@ -1,0 +1,327 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth scrolling with enhanced behavior */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+body {
+  overflow-x: hidden;
+  background: #0a0a0a;
+}
+
+/* Enhanced scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.8);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #06b6d4, #a855f7, #ec4899);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #0891b2, #9333ea, #db2777);
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
+}
+
+/* Enhanced text selection */
+::selection {
+  background: rgba(6, 182, 212, 0.3);
+  color: white;
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+}
+
+/* Enhanced moving text animations */
+@keyframes textSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.8) rotateX(20deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0deg);
+  }
+}
+
+@keyframes textSlideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0deg);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.8) rotateX(-20deg);
+  }
+}
+
+.text-slide-in {
+  animation: textSlideIn 0.6s ease-out forwards;
+}
+
+.text-slide-out {
+  animation: textSlideOut 0.6s ease-out forwards;
+}
+
+/* Enhanced cursor blink animation */
+@keyframes cursorBlink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes cursorPulse {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.7; 
+    transform: scale(1.1);
+  }
+}
+
+.cursor-blink {
+  animation: cursorBlink 1s infinite;
+}
+
+.cursor-pulse {
+  animation: cursorPulse 1.5s infinite;
+}
+
+/* Enhanced gradient text animations */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes holographicShift {
+  0% {
+    background-position: 0% 0%;
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    background-position: 100% 0%;
+    filter: hue-rotate(90deg);
+  }
+  50% {
+    background-position: 100% 100%;
+    filter: hue-rotate(180deg);
+  }
+  75% {
+    background-position: 0% 100%;
+    filter: hue-rotate(270deg);
+  }
+  100% {
+    background-position: 0% 0%;
+    filter: hue-rotate(360deg);
+  }
+}
+
+.gradient-text-animated {
+  background: linear-gradient(-45deg, #06b6d4, #a855f7, #ec4899, #10b981, #f59e0b);
+  background-size: 400% 400%;
+  animation: gradientShift 4s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.holographic-text {
+  background: linear-gradient(-45deg, #06b6d4, #a855f7, #ec4899, #10b981);
+  background-size: 400% 400%;
+  animation: holographicShift 6s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Enhanced glow effects */
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+}
+
+.glow-pink {
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+}
+
+/* Enhanced button hover effects */
+.btn-tech {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-tech::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-tech:hover::before {
+  left: 100%;
+}
+
+/* Enhanced loading animations */
+@keyframes dataFlow {
+  0% {
+    transform: translateX(-100%) translateY(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100vw) translateY(-50px);
+    opacity: 0;
+  }
+}
+
+.data-flow {
+  animation: dataFlow 3s linear infinite;
+}
+
+/* Enhanced matrix effect */
+@keyframes matrixFall {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+.matrix-char {
+  animation: matrixFall 4s linear infinite;
+}
+
+/* Enhanced neural network animations */
+@keyframes neuralPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.neural-node {
+  animation: neuralPulse 2s ease-in-out infinite;
+}
+
+/* Enhanced quantum effects */
+@keyframes quantumFlicker {
+  0%, 100% {
+    opacity: 0.8;
+    filter: brightness(1);
+  }
+  25% {
+    opacity: 0.4;
+    filter: brightness(1.5);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(0.8);
+  }
+  75% {
+    opacity: 0.6;
+    filter: brightness(1.2);
+  }
+}
+
+.quantum-effect {
+  animation: quantumFlicker 3s ease-in-out infinite;
+}
+
+/* Enhanced holographic effects */
+@keyframes holographicGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+  }
+  33% {
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+  }
+  66% {
+    box-shadow: 0 0 25px rgba(236, 72, 153, 0.35);
+  }
+}
+
+.holographic-glow {
+  animation: holographicGlow 4s ease-in-out infinite;
+}
+
+/* Enhanced tech grid */
+.tech-grid {
+  background-image: 
+    linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Enhanced focus states */
+input:focus, textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.5);
+  border-color: #06b6d4;
+}
+
+/* Enhanced accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Enhanced responsive design */
+@media (max-width: 768px) {
+  .custom-cursor,
+  .custom-cursor-trail {
+    display: none;
+  }
+  
+  * {
+    cursor: auto !important;
+  }
+}

@@ -41,8 +41,8 @@ const Portfolio: React.FC = () => {
         { name: "ethereum", color: "pink-text-gradient" },
       ],
       image: "https://images.pexels.com/photos/844124/pexels-photo-844124.jpeg?auto=compress&cs=tinysrgb&w=800",
-      source_code_link: "https://github.com/",
-      live_demo_link: "https://example.com/",
+      source_code_link: "https://github.com/Palak24Ol/PalaksPortfolio",
+      live_demo_link: "https://palaks-portfolio.vercel.app/",
       category: "Blockchain"
     }
   ];

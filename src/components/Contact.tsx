@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, Instagram, Terminal, Code2, Zap } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Terminal } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -9,53 +9,10 @@ const Contact: React.FC = () => {
     message: ''
   });
 
-  const [currentAction, setCurrentAction] = useState(0);
-  const [showCursor, setShowCursor] = useState(true);
-  const [terminalLines, setTerminalLines] = useState<string[]>([]);
-
-  const movingActions = [
-    "Ready to Build the Future?",
-    "Let's Create Something Amazing",
-    "Have an AI Project? Let's Discuss",
-    "Need Cloud Architecture? I'm Here",
-    "Blockchain Innovation Awaits"
-  ];
-
-  const terminalCommands = [
-    "$ git clone future-project.git",
-    "$ npm install innovation",
-    "$ docker run --name collaboration",
-    "$ kubectl deploy amazing-ideas",
-    "$ terraform apply success"
-  ];
-
-  // Toggle cursor every 500ms
-  useEffect(() => {
-    const cursorInterval = setInterval(() => {
-      setShowCursor(prev => !prev);
-    }, 500);
-
-    return () => clearInterval(cursorInterval);
-  }, []);
-
-  // Change action text every 4 seconds
-  useEffect(() => {
-    const actionInterval = setInterval(() => {
-      setCurrentAction(prev => (prev + 1) % movingActions.length);
-    }, 4000);
-
-    return () => clearInterval(actionInterval);
-  }, []);
-
-  // Terminal effect
-  useEffect(() => {
-    const command = terminalCommands[currentAction];
-    setTerminalLines(prev => [...prev.slice(-3), command]);
-  }, [currentAction]);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
+    // Handle form submission here
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -70,7 +27,7 @@ const Contact: React.FC = () => {
       icon: Mail, 
       label: 'Email', 
       value: 'palakj.ug23.cs@nitp.ac.in', 
-      href: 'mailto: palakj.ug23.cs@nitp.ac.in',
+      href: 'mailto:palakj.ug23.cs@nitp.ac.in',
       color: 'from-cyan-400 to-blue-400'
     },
     { 
@@ -84,45 +41,18 @@ const Contact: React.FC = () => {
       icon: MapPin, 
       label: 'Location', 
       value: 'Gorakhpur, India',
-      href: 'https://www.google.com/maps/place/Gorakhpur,+Uttar+Pradesh/@26.7637151,83.4039116,12z/data=!3m1!4b1!4m6!3m5!1s0x3991446a0c332489:0x1ff3f97fdcc6bfa2!8m2!3d26.7605545!4d83.3731675!16zL20vMDRicXZ2?entry=ttu&g_ep=EgoyMDI1MDYzMC4wIKXMDSoASAFQAw%3D%3D',
+      href: 'https://www.google.com/maps/place/Gorakhpur,+Uttar+Pradesh',
       color: 'from-green-400 to-cyan-400'
     },
   ];
 
   const socialLinks = [
-    { icon: Github, href: 'https://github', label: 'GitHub', color: 'hover:text-cyan-400' },
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn', color: 'hover:text-blue-400' },
-    { icon: Twitter, href: 'https://twitter.com', label: 'Twitter', color: 'hover:text-purple-400' },
-    { icon: Instagram, href: 'https://instagram.com', label: 'Instagram', color: 'hover:text-pink-400' },
+    { icon: Github, href: 'https://github.com/Palak24Ol', label: 'GitHub', color: 'hover:text-cyan-400' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/palakjaiswal2401/', label: 'LinkedIn', color: 'hover:text-blue-400' }
   ];
 
   return (
-    <section id="contact" className="py-20 relative overflow-hidden">
-      {/* Tech grid background */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="grid grid-cols-20 grid-rows-20 h-full w-full">
-          {[...Array(400)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="border border-cyan-400/20"
-              animate={{
-                opacity: [0.1, 0.3, 0.1],
-                borderColor: [
-                  'rgba(6, 182, 212, 0.1)',
-                  'rgba(168, 85, 247, 0.2)',
-                  'rgba(6, 182, 212, 0.1)'
-                ]
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                delay: Math.random() * 2
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
+    <section id="contact" className="py-20 relative">
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -142,73 +72,20 @@ const Contact: React.FC = () => {
             <span className="text-cyan-300 font-mono text-sm">CONTACT.INIT()</span>
           </motion.div>
 
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 font-mono">
+          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
             Get In{' '}
             <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
               Touch
             </span>
           </h2>
           
-          {/* Enhanced Moving Action Text */}
-          <motion.div className="h-20 flex flex-col items-center justify-center mb-4">
-            <motion.span
-              key={currentAction}
-              initial={{ opacity: 0, y: 20, scale: 0.8 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.8 }}
-              transition={{ 
-                duration: 0.6,
-                ease: "easeOut"
-              }}
-              className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent font-bold text-2xl lg:text-3xl font-mono"
-            >
-              {movingActions[currentAction]}
-            </motion.span>
-            <motion.span
-              animate={{ opacity: showCursor ? 1 : 0 }}
-              transition={{ duration: 0.1 }}
-              className="ml-2 text-cyan-400 font-bold text-3xl"
-            >
-              _
-            </motion.span>
-          </motion.div>
-
-          {/* Terminal Window */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            viewport={{ once: true }}
-            className="bg-slate-900/80 backdrop-blur-xl rounded-lg border border-cyan-400/30 p-4 mb-6 font-mono text-sm max-w-md mx-auto"
-          >
-            <div className="flex items-center space-x-2 mb-2">
-              <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-              <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-              <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-              <span className="text-gray-400 ml-2">palak@contact:~</span>
-            </div>
-            <div className="space-y-1">
-              {terminalLines.map((line, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="text-cyan-400"
-                >
-                  {line}
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-          
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto font-mono">
-            Ready to build the next generation of technology? Let's collaborate on something extraordinary.
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+            I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology.
           </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16">
-          {/* Enhanced Contact Information */}
+          {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -217,11 +94,11 @@ const Contact: React.FC = () => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6 font-mono">
-                <span className="text-cyan-400">&gt;</span> Let's_Connect()
+              <h3 className="text-2xl font-bold text-white mb-6">
+                Let's Connect
               </h3>
-              <p className="text-gray-300 text-lg mb-8 font-mono">
-                I'm always excited to discuss cutting-edge projects, innovative solutions, and potential collaborations in AI, blockchain, and cloud technologies.
+              <p className="text-gray-300 text-lg mb-8">
+                Feel free to reach out if you have any questions, want to collaborate on a project, or just want to say hello!
               </p>
             </div>
 
@@ -241,22 +118,16 @@ const Contact: React.FC = () => {
                     <info.icon className="text-white" size={20} />
                   </div>
                   <div>
-                    <p className="text-gray-400 text-sm font-mono">{info.label}</p>
-                    <p className="text-white font-semibold font-mono group-hover:text-cyan-400 transition-colors duration-300">{info.value}</p>
+                    <p className="text-gray-400 text-sm">{info.label}</p>
+                    <p className="text-white font-semibold group-hover:text-cyan-400 transition-colors duration-300">{info.value}</p>
                   </div>
-                  <motion.div
-                    className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    whileHover={{ x: 5 }}
-                  >
-                    <Code2 className="text-cyan-400" size={16} />
-                  </motion.div>
                 </motion.a>
               ))}
             </div>
 
             <div>
-              <h4 className="text-xl font-semibold text-white mb-4 font-mono">
-                <span className="text-cyan-400">&gt;</span> Social_Networks[]
+              <h4 className="text-xl font-semibold text-white mb-4">
+                Social Links
               </h4>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
@@ -280,7 +151,7 @@ const Contact: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Enhanced Contact Form */}
+          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -288,35 +159,15 @@ const Contact: React.FC = () => {
             viewport={{ once: true }}
             className="bg-slate-900/50 backdrop-blur-xl rounded-2xl p-8 border border-cyan-500/20 relative overflow-hidden"
           >
-            {/* Tech grid overlay */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="grid grid-cols-8 grid-rows-8 h-full w-full">
-                {[...Array(64)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="border border-cyan-400/20"
-                    animate={{
-                      opacity: [0.1, 0.3, 0.1],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: Math.random() * 2
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-
             <div className="relative z-10">
-              <h3 className="text-2xl font-bold text-white mb-6 font-mono">
-                <span className="text-cyan-400">&gt;</span> Send_Message()
+              <h3 className="text-2xl font-bold text-white mb-6">
+                Send Message
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2 font-mono">
-                    const name =
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                    Name
                   </label>
                   <input
                     type="text"
@@ -325,14 +176,14 @@ const Contact: React.FC = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-slate-800/50 border border-cyan-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500/40 transition-all duration-300 font-mono"
-                    placeholder='"Your Name"'
+                    className="w-full px-4 py-3 bg-slate-800/50 border border-cyan-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500/40 transition-all duration-300"
+                    placeholder="Your Name"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2 font-mono">
-                    const email =
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                    Email
                   </label>
                   <input
                     type="email"
@@ -341,14 +192,14 @@ const Contact: React.FC = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-slate-800/50 border border-cyan-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500/40 transition-all duration-300 font-mono"
-                    placeholder='"your.email@domain.com"'
+                    className="w-full px-4 py-3 bg-slate-800/50 border border-cyan-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500/40 transition-all duration-300"
+                    placeholder="your.email@domain.com"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2 font-mono">
-                    const message =
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                    Message
                   </label>
                   <textarea
                     id="message"
@@ -357,8 +208,8 @@ const Contact: React.FC = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 bg-slate-800/50 border border-cyan-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500/40 transition-all duration-300 resize-none font-mono"
-                    placeholder='"Tell me about your innovative project..."'
+                    className="w-full px-4 py-3 bg-slate-800/50 border border-cyan-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500/40 transition-all duration-300 resize-none"
+                    placeholder="Tell me about your project or just say hello..."
                   />
                 </div>
 
@@ -369,19 +220,12 @@ const Contact: React.FC = () => {
                     boxShadow: "0 0 30px rgba(6, 182, 212, 0.5)"
                   }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white py-3 px-6 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2 font-mono relative overflow-hidden group"
+                  className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white py-3 px-6 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2 relative overflow-hidden group"
                 >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  />
-                  <span className="relative z-10">Execute_Send()</span>
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    transition={{ duration: 0.2 }}
-                    className="relative z-10"
-                  >
+                  <span className="relative z-10 flex items-center space-x-2">
                     <Send size={18} />
-                  </motion.div>
+                    <span>Send Message</span>
+                  </span>
                 </motion.button>
               </form>
             </div>

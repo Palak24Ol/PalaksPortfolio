@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X, Home, User, Briefcase, Mail, Clock, Terminal, Cpu, Zap } from 'lucide-react';
+import { Menu, X, Home, User, Briefcase, Mail, Clock, Terminal } from 'lucide-react';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,7 +54,7 @@ const Header: React.FC = () => {
     >
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Enhanced Logo */}
+          {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
             className="flex items-center space-x-3"
@@ -74,7 +74,7 @@ const Header: React.FC = () => {
             </span>
           </motion.div>
 
-          {/* Enhanced Desktop Menu */}
+          {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-2">
             {menuItems.map((item, index) => (
               <motion.a
@@ -85,7 +85,7 @@ const Header: React.FC = () => {
                 transition={{ delay: index * 0.1, duration: 0.5 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`relative px-4 py-2 rounded-xl transition-all duration-300 flex items-center space-x-2 font-mono ${
+                className={`relative px-4 py-2 rounded-xl transition-all duration-300 flex items-center space-x-2 ${
                   activeSection === item.id
                     ? 'text-white bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/30'
                     : 'text-gray-300 hover:text-white hover:bg-slate-800/50'
@@ -104,23 +104,9 @@ const Header: React.FC = () => {
                 )}
               </motion.a>
             ))}
-            
-            {/* Status indicator */}
-            <motion.div
-              className="flex items-center space-x-2 px-4 py-2 bg-slate-800/50 rounded-xl border border-green-400/30"
-              animate={{ opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <motion.div
-                className="w-2 h-2 bg-green-400 rounded-full"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1, repeat: Infinity }}
-              />
-              <span className="text-green-400 text-sm font-mono">Available</span>
-            </motion.div>
           </div>
 
-          {/* Enhanced Mobile Menu Button */}
+          {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             whileHover={{ scale: 1.05 }}
@@ -136,7 +122,7 @@ const Header: React.FC = () => {
           </motion.button>
         </div>
 
-        {/* Enhanced Mobile Menu */}
+        {/* Mobile Menu */}
         <motion.div
           initial={false}
           animate={{
@@ -163,7 +149,7 @@ const Header: React.FC = () => {
                   x: isMenuOpen ? 0 : -20
                 }}
                 transition={{ delay: index * 0.1, duration: 0.3 }}
-                className={`block py-3 px-4 rounded-xl transition-all duration-200 flex items-center space-x-3 font-mono ${
+                className={`block py-3 px-4 rounded-xl transition-all duration-200 flex items-center space-x-3 ${
                   activeSection === item.id
                     ? 'text-white bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/30'
                     : 'text-gray-300 hover:text-white hover:bg-slate-800/50'
@@ -180,20 +166,6 @@ const Header: React.FC = () => {
                 )}
               </motion.a>
             ))}
-            
-            {/* Mobile status */}
-            <motion.div
-              className="mt-4 pt-4 border-t border-cyan-500/20 flex items-center justify-center space-x-2"
-              animate={{ opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <motion.div
-                className="w-2 h-2 bg-green-400 rounded-full"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1, repeat: Infinity }}
-              />
-              <span className="text-green-400 text-sm font-mono">Available for Projects</span>
-            </motion.div>
           </motion.div>
         </motion.div>
       </nav>

@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, MapPin, ExternalLink, Terminal, Code2, Database, Cloud, Brain, Zap } from 'lucide-react';
+import { Calendar, MapPin, ExternalLink, Terminal, Code2, GraduationCap, Award } from 'lucide-react';
 
 interface ExperienceItem {
   title: string;
-  company_name: string;
+  organization: string;
   icon: string;
   iconBg: string;
   date: string;
@@ -16,65 +16,50 @@ interface ExperienceItem {
 const Experience: React.FC = () => {
   const experiences: ExperienceItem[] = [
     {
-      title: "Senior AI/ML Engineer",
-      company_name: "TechCorp AI",
-      icon: "🧠",
+      title: "B.Tech Computer Science",
+      organization: "NIT Patna",
+      icon: "🎓",
       iconBg: "linear-gradient(45deg, #06b6d4, #8b5cf6)",
-      date: "Jan 2023 - Present",
-      category: "AI/ML",
-      techStack: ["TensorFlow", "PyTorch", "Kubernetes", "AWS"],
+      date: "2023 - 2027",
+      category: "Education",
+      techStack: ["Data Structures", "Algorithms", "Web Development", "Database Systems"],
       points: [
-        "Architected and deployed large-scale machine learning models serving 10M+ users daily with 99.9% uptime.",
-        "Led development of computer vision systems using deep learning, achieving 95% accuracy in real-time object detection.",
-        "Implemented MLOps pipelines with automated model training, validation, and deployment using Kubernetes and Docker.",
-        "Mentored junior engineers and established ML best practices across the organization.",
+        "Currently pursuing Bachelor of Technology in Computer Science and Engineering",
+        "Focusing on software development, data structures, and algorithms",
+        "Active participant in coding competitions and technical events",
+        "Maintaining strong academic performance while building practical projects",
       ],
     },
     {
-      title: "Cloud Solutions Architect",
-      company_name: "CloudTech Solutions",
-      icon: "☁️",
-      iconBg: "linear-gradient(45deg, #10b981, #06b6d4)",
-      date: "Mar 2021 - Dec 2022",
-      category: "Cloud",
-      techStack: ["AWS", "Terraform", "Docker", "Microservices"],
-      points: [
-        "Designed and implemented cloud-native microservices architecture serving 1M+ concurrent users.",
-        "Reduced infrastructure costs by 40% through optimization of AWS resources and serverless computing.",
-        "Built CI/CD pipelines with automated testing, security scanning, and blue-green deployments.",
-        "Led migration of legacy monolithic applications to containerized microservices on Kubernetes.",
-      ],
-    },
-    {
-      title: "Blockchain Developer",
-      company_name: "DeFi Innovations",
-      icon: "⛓️",
-      iconBg: "linear-gradient(45deg, #8b5cf6, #ec4899)",
-      date: "Jun 2020 - Feb 2021",
-      category: "Blockchain",
-      techStack: ["Solidity", "Web3.js", "Ethereum", "React"],
-      points: [
-        "Developed smart contracts for DeFi protocols handling $50M+ in total value locked (TVL).",
-        "Built decentralized applications (dApps) with React and Web3.js for seamless user experience.",
-        "Implemented automated market maker (AMM) algorithms and yield farming mechanisms.",
-        "Conducted security audits and gas optimization for smart contracts, reducing costs by 30%.",
-      ],
-    },
-    {
-      title: "Full Stack Developer",
-      company_name: "StartupTech",
+      title: "Frontend Developer",
+      organization: "Personal Projects",
       icon: "💻",
-      iconBg: "linear-gradient(45deg, #f59e0b, #ef4444)",
-      date: "Jan 2019 - May 2020",
-      category: "Full Stack",
-      techStack: ["React", "Node.js", "PostgreSQL", "Redis"],
+      iconBg: "linear-gradient(45deg, #10b981, #06b6d4)",
+      date: "2023 - Present",
+      category: "Development",
+      techStack: ["React", "JavaScript", "HTML/CSS", "Tailwind CSS"],
       points: [
-        "Built scalable web applications using React, Node.js, and PostgreSQL serving 100K+ active users.",
-        "Implemented real-time features using WebSockets and Redis for live chat and notifications.",
-        "Optimized database queries and implemented caching strategies, improving response times by 60%.",
-        "Collaborated with cross-functional teams using Agile methodologies and modern development practices.",
+        "Built multiple responsive web applications using React and modern JavaScript",
+        "Implemented user-friendly interfaces with focus on accessibility and performance",
+        "Created interactive components and integrated APIs for dynamic content",
+        "Collaborated on open-source projects and contributed to the developer community",
       ],
     },
+    {
+      title: "UI/UX Design",
+      organization: "Freelance Projects",
+      icon: "🎨",
+      iconBg: "linear-gradient(45deg, #8b5cf6, #ec4899)",
+      date: "2023 - Present",
+      category: "Design",
+      techStack: ["Figma", "Adobe XD", "Prototyping", "User Research"],
+      points: [
+        "Designed user interfaces for web and mobile applications",
+        "Conducted user research and created user personas for better UX",
+        "Developed wireframes, prototypes, and high-fidelity designs",
+        "Collaborated with developers to ensure design implementation accuracy",
+      ],
+    }
   ];
 
   // Animation variants
@@ -127,61 +112,17 @@ const Experience: React.FC = () => {
     })
   };
 
-  const pointVariants = {
-    hidden: { 
-      opacity: 0, 
-      x: -20,
-      scale: 0.9
-    },
-    visible: (index: number) => ({
-      opacity: 1,
-      x: 0,
-      scale: 1,
-      transition: {
-        delay: index * 0.1,
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    })
-  };
-
   const getCategoryIcon = (category: string) => {
     switch (category) {
-      case 'AI/ML': return Brain;
-      case 'Cloud': return Cloud;
-      case 'Blockchain': return Zap;
-      case 'Full Stack': return Code2;
+      case 'Education': return GraduationCap;
+      case 'Development': return Code2;
+      case 'Design': return Award;
       default: return Terminal;
     }
   };
 
   return (
-    <section id="experience" className="py-20 relative overflow-hidden">
-      {/* Tech grid background */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="grid grid-cols-16 grid-rows-16 h-full w-full">
-          {[...Array(256)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="border border-cyan-400/20"
-              animate={{
-                opacity: [0.1, 0.3, 0.1],
-                borderColor: [
-                  'rgba(6, 182, 212, 0.1)',
-                  'rgba(168, 85, 247, 0.2)',
-                  'rgba(6, 182, 212, 0.1)'
-                ]
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                delay: Math.random() * 2
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
+    <section id="experience" className="py-20 relative">
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -206,9 +147,9 @@ const Experience: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-gray-400 text-lg mb-4 tracking-wider uppercase font-mono"
+            className="text-gray-400 text-lg mb-4 tracking-wider uppercase"
           >
-            What I have built so far
+            My Journey So Far
           </motion.p>
           
           <motion.h2
@@ -216,19 +157,18 @@ const Experience: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-4xl lg:text-6xl font-bold text-white mb-6 font-mono"
+            className="text-4xl lg:text-6xl font-bold text-white mb-6"
           >
-            Work{' '}
+            Education &{' '}
             <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
               Experience
             </span>
-            <span className="text-cyan-400">.</span>
           </motion.h2>
         </motion.div>
 
         <div className="max-w-5xl mx-auto">
           <div className="relative">
-            {/* Enhanced Timeline line */}
+            {/* Timeline line */}
             <motion.div
               variants={timelineVariants}
               initial="hidden"
@@ -246,7 +186,7 @@ const Experience: React.FC = () => {
               
               return (
                 <div key={`experience-${index}`} className="relative mb-16 md:ml-24">
-                  {/* Enhanced Timeline dot */}
+                  {/* Timeline dot */}
                   <motion.div
                     custom={index}
                     variants={dotVariants}
@@ -274,24 +214,10 @@ const Experience: React.FC = () => {
                       <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-slate-900 rounded-full border-2 border-cyan-400/50 flex items-center justify-center">
                         <CategoryIcon className="text-cyan-400" size={14} />
                       </div>
-                      
-                      {/* Pulsing ring effect */}
-                      <motion.div
-                        animate={{
-                          scale: [1, 1.3, 1],
-                          opacity: [0.5, 0.8, 0.5]
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                        className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 to-purple-400 opacity-30 blur-md"
-                      />
                     </motion.div>
                   </motion.div>
 
-                  {/* Enhanced Experience card */}
+                  {/* Experience card */}
                   <motion.div
                     custom={index}
                     variants={cardVariants}
@@ -306,43 +232,6 @@ const Experience: React.FC = () => {
                     className="relative group"
                   >
                     <div className="bg-slate-900/60 backdrop-blur-xl rounded-3xl p-8 border border-cyan-500/30 hover:border-cyan-400/60 transition-all duration-500 relative overflow-hidden">
-                      {/* Tech grid overlay */}
-                      <div className="absolute inset-0 opacity-10">
-                        <div className="grid grid-cols-8 grid-rows-8 h-full w-full">
-                          {[...Array(64)].map((_, i) => (
-                            <motion.div
-                              key={i}
-                              className="border border-cyan-400/20"
-                              animate={{
-                                opacity: [0.1, 0.3, 0.1],
-                              }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                delay: Math.random() * 2
-                              }}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                      
-                      {/* Animated background gradient */}
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                        animate={{
-                          background: [
-                            'linear-gradient(45deg, rgba(6, 182, 212, 0.05) 0%, rgba(139, 92, 246, 0.05) 50%, rgba(236, 72, 153, 0.05) 100%)',
-                            'linear-gradient(45deg, rgba(139, 92, 246, 0.05) 0%, rgba(236, 72, 153, 0.05) 50%, rgba(6, 182, 212, 0.05) 100%)',
-                            'linear-gradient(45deg, rgba(236, 72, 153, 0.05) 0%, rgba(6, 182, 212, 0.05) 50%, rgba(139, 92, 246, 0.05) 100%)'
-                          ]
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                          ease: "linear"
-                        }}
-                      />
-                      
                       <div className="relative z-10">
                         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6">
                           <div className="flex items-center space-x-4 mb-4 lg:mb-0">
@@ -360,7 +249,7 @@ const Experience: React.FC = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ delay: index * 0.3 + 0.3, duration: 0.6 }}
                                 viewport={{ once: true }}
-                                className="text-2xl font-bold text-white mb-1 font-mono"
+                                className="text-2xl font-bold text-white mb-1"
                               >
                                 {experience.title}
                               </motion.h3>
@@ -371,7 +260,7 @@ const Experience: React.FC = () => {
                                 viewport={{ once: true }}
                                 className="text-lg font-semibold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent"
                               >
-                                {experience.company_name}
+                                {experience.organization}
                               </motion.p>
                             </div>
                           </div>
@@ -385,7 +274,7 @@ const Experience: React.FC = () => {
                               className="flex items-center space-x-2 text-gray-400 bg-slate-800/50 px-4 py-2 rounded-full"
                             >
                               <Calendar size={16} />
-                              <span className="text-sm font-medium font-mono">{experience.date}</span>
+                              <span className="text-sm font-medium">{experience.date}</span>
                             </motion.div>
                             
                             <motion.div
@@ -396,7 +285,7 @@ const Experience: React.FC = () => {
                               className="flex items-center space-x-2 text-gray-400 bg-slate-800/50 px-4 py-2 rounded-full"
                             >
                               <CategoryIcon size={16} />
-                              <span className="text-sm font-medium font-mono">{experience.category}</span>
+                              <span className="text-sm font-medium">{experience.category}</span>
                             </motion.div>
                           </div>
                         </div>
@@ -412,7 +301,7 @@ const Experience: React.FC = () => {
                           {experience.techStack.map((tech, techIndex) => (
                             <span 
                               key={techIndex}
-                              className="text-xs bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-full font-mono border border-cyan-500/30"
+                              className="text-xs bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-full border border-cyan-500/30"
                             >
                               {tech}
                             </span>
@@ -428,8 +317,10 @@ const Experience: React.FC = () => {
                           {experience.points.map((point, pointIndex) => (
                             <motion.li
                               key={pointIndex}
-                              custom={pointIndex}
-                              variants={pointVariants}
+                              initial={{ opacity: 0, x: -20 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              transition={{ delay: pointIndex * 0.1, duration: 0.5 }}
+                              viewport={{ once: true }}
                               className="flex items-start space-x-4 text-gray-300 group/item"
                             >
                               <motion.div
@@ -438,7 +329,7 @@ const Experience: React.FC = () => {
                                 className="w-3 h-3 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0 shadow-lg"
                               />
                               <motion.span
-                                className="leading-relaxed text-base group-hover/item:text-white transition-colors duration-300 font-mono"
+                                className="leading-relaxed text-base group-hover/item:text-white transition-colors duration-300"
                               >
                                 {point}
                               </motion.span>
@@ -454,7 +345,7 @@ const Experience: React.FC = () => {
           </div>
         </div>
 
-        {/* Enhanced Call to action */}
+        {/* Call to action */}
         <motion.div
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -469,20 +360,9 @@ const Experience: React.FC = () => {
               boxShadow: "0 20px 40px rgba(6, 182, 212, 0.3)"
             }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center space-x-3 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 text-white px-10 py-4 rounded-full font-semibold text-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group font-mono"
+            className="inline-flex items-center space-x-3 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 text-white px-10 py-4 rounded-full font-semibold text-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
           >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-pink-500 via-cyan-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              animate={{
-                x: ['-100%', '100%']
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-            />
-            <span className="relative z-10">Let's Build the Future</span>
+            <span className="relative z-10">Let's Connect</span>
             <motion.div
               whileHover={{ x: 5 }}
               transition={{ duration: 0.2 }}
